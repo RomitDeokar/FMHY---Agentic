@@ -8,7 +8,7 @@
 
 You type something natural — *"I want to watch Inception for free"* or *"download Minecraft"* or *"learn Python for free"* — and the agent:
 
-1. **Parses your intent** using an LLM (Claude / GPT)
+1. **Parses your intent** using an LLM (gemini - free tier)
 2. **Classifies the category** (movies, games, books, music, courses, software, AI tools, etc.)
 3. **Searches the FMHY index** (scraped + cached from fmhy.net) for matching resources
 4. **Ranks results** by FMHY star rating and community trust score
@@ -70,7 +70,7 @@ fmhy-agent/
 | Layer | Tech | Why |
 |---|---|---|
 | **Frontend** | Vanilla JS (ES Modules) | Zero build step, fast, portable |
-| **AI / Intent Parsing** | Claude API (`claude-sonnet-4-6`) | Natural language → structured intent |
+| **AI / Intent Parsing** | gemini api(free tier) | Natural language → structured intent |
 | **FMHY Data** | Scraped + static JSON cache | fmhy.net doesn't have a public API |
 | **Proxy Server** | Node.js + Express | Bypass CORS when fetching fmhy.net live |
 | **Caching** | LocalStorage (browser) + in-memory (server) | Avoid hammering fmhy.net |
@@ -86,7 +86,7 @@ User Input
     ▼
 ┌─────────────────────────────────┐
 │  intent-parser.js               │
-│  → calls Claude API             │
+│  → calls gemini api            │
 │  → returns { intent, query,     │
 │              category, keywords }│
 └────────────┬────────────────────┘
@@ -137,7 +137,7 @@ cp .env.example .env
 Fill in `.env`:
 
 ```
-ANTHROPIC_API_KEY=your_key_here
+GEMINI_API_KEY=your_key_here
 PORT=3000
 ```
 
